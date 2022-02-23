@@ -1,0 +1,1 @@
+# action-spicedb-validate
