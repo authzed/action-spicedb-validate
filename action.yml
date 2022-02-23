@@ -1,0 +1,11 @@
+---
+name: "Validate SpiceDB schema"
+description: "Runs the `zed validate` command on the provided schema and test data"
+author: "authzed"
+inputs:
+  validationfile:
+    description: "path to the YAML file containing schema, test relationships, assertions and expected relations"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
