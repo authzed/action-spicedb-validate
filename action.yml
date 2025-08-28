@@ -6,6 +6,9 @@ inputs:
   validationfile:
     description: "path to the YAML file containing schema, test relationships, assertions and expected relations"
     required: true
+  fail-on-warn:
+    description: "whether validation warnings should cause the validation to fail"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
