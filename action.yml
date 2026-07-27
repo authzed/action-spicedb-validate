@@ -4,8 +4,11 @@ description: "Runs the `zed validate` command on the provided schema and test da
 author: "authzed"
 inputs:
   validationfile:
-    description: "path to the YAML file containing schema, test relationships, assertions and expected relations"
-    required: true
+    description: "path to the validation file containing schema, test relationships, assertions and expected relations (for single file validation)"
+    required: false
+  validationfiles:
+    description: "list of paths to validation files (newline or comma separated, supports glob patterns)"
+    required: false
   fail-on-warn:
     description: "whether validation warnings should cause the validation to fail"
     required: false

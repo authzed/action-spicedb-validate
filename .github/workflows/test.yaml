@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v2"
+      - uses: "actions/checkout@v6"
       - uses: "bewuethr/yamllint-action@v1.1.1"
         with:
           config-file: ".yamllint"

@@ -16,11 +16,13 @@ A compatible file can be produced by downloading from the [Authzed Playground].
 
 ## Usage
 
+### Single file validation
+
 Add the following to any workflow:
 
 ```yaml
 steps:
-- uses: "actions/checkout@v4"
+- uses: "actions/checkout@v6"
 - uses: "authzed/action-spicedb-validate@v1"
   with:
     validationfile: "myschema.zaml"
@@ -29,7 +31,53 @@ steps:
 > **Note:** The `actions/checkout` step is required before running this action.
 > Without it, your repository files won't be available and validation will fail with "no such file or directory".
 
-The `validationfile` path should be relative to the repository root.
+### Multiple files validation
+
+You can validate multiple files using the `validationfiles` input:
+
+```yaml
+steps:
+- uses: "actions/checkout@v6"
+- uses: "authzed/action-spicedb-validate@v1"
+  with:
+    validationfiles: |
+      schemas/schema1.zaml
+      schemas/schema2.zaml
+```
+
+Comma-separated values are also supported:
+
+```yaml
+steps:
+- uses: "actions/checkout@v6"
+- uses: "authzed/action-spicedb-validate@v1"
+  with:
+    validationfiles: "schemas/schema1.zaml, schemas/schema2.zaml"
+```
+
+You can also use glob patterns (including recursive `**` patterns):
+
+```yaml
+steps:
+- uses: "actions/checkout@v6"
+- uses: "authzed/action-spicedb-validate@v1"
+  with:
+    validationfiles: "schemas/**/*.zaml"
+```
+
+### Inputs
+
+| Input | Description | Required |
+|-------|-------------|----------|
+| `validationfile` | Path to a single validation file | No* |
+| `validationfiles` | List of paths to validate (newline or comma separated, supports glob patterns including `**`) | No* |
+| `fail-on-warn` | Whether validation warnings should cause the validation to fail | No |
+
+\* At least one of `validationfile` or `validationfiles` must be provided.
+
+The `validationfile`/`validationfiles` paths should be relative to the repository root.
+
+> **Note:** File paths with spaces are supported when using newline-separated literal paths or the single `validationfile` input. Glob patterns in paths with spaces may not expand correctly. Filenames containing literal glob characters (`*`, `?`, `[`) or commas must use the single `validationfile` input.
 
 See [test-schema.zaml] for an example of an input file.
 
