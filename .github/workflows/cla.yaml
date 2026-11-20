@@ -17,7 +17,7 @@ jobs:
     name: "Check Signature"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "authzed/actions/cla-check@main"
+      - uses: "authzed/actions/cla-check@27b6a88867fd94e47007b09ddbdcb688f34dd5e2"  # main; no release tags, so bump by hand
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           cla_assistant_token: "${{ secrets.CLA_ASSISTANT_ACCESS_TOKEN }}"
